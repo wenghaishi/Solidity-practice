@@ -15,7 +15,6 @@ contract Array {
         
         arr.pop();
 
-
     }
 
 }
