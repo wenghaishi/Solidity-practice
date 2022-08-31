@@ -2,26 +2,25 @@
 
 pragma solidity ^0.8.8;
 
-contract Enum {
-    enum Status {
-        Pending,
-        Shipped,
-        Rejected,
-        Approved,
-        Completed
+contract enum {
+    enum DrinkSize{}
+        small,
+        medium,
+        large
     }
 
-    Status public status;
+    DrinkSize choice;
+    DrinkSize constant defaultChoice = DrinkSize.medium;
 
-    function get() public view returns(Status) {
-        return(status);
+    function setLarge() public {
+        choice = DrinkSize.large;
     }
 
-    function change(Status _newStatus) public {
-        status = _newStatus;
+    function getChoice() public returns(DrinkSize) {
+        return choice;
     }
 
-    function reset() public {
-        delete status;
+    function getDefault() public returns(DrinkSize) {
+        return defaultChoice;
     }
 }
