@@ -20,7 +20,7 @@ contract VendingMachine {
         return donutBalances[address(this)];
     }
 
-    function restock(uint256 _amount) private _ownerOnly {
+    function restock(uint256 _amount) public _ownerOnly {
         donutBalances[address(this)] += _amount;
     }
 
