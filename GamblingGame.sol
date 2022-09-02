@@ -2,20 +2,23 @@
 
 pragma solidity ^0.8.10;
 
-//A gambling game where players can deposit 1 eth to the pool each time. When somebody hits 14eth, he is the winner.
-
 contract GamblingGame {
 
     uint256 currentEth;
-    uint256 maxEth = 14;
+    uint256 maxEth = 14 ether;
     address public winner;
 
     function deposit() public payable {
-        require(msg.value == 1eth, "Only send 1eth");
+        require(msg.value == 1 ether, "Only send 1eth");
+        require(currentEth < maxEth, "Max Eth reached");
         currentEth += msg.value;
 
         if (currentEth == maxEth) {
             winner = msg.sender;
+        }
+
+        if (msg.sender == winner) {
+            claimEth();
         }
     }
 
